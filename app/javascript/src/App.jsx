@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { initializeLogger } from "common/logger";
+
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 const App = () => {
   useEffect(() => {
@@ -7,14 +9,7 @@ const App = () => {
     logger.info("Log from js-logger");
   }, []);
 
-  return (
-    <Router>
-      <Switch>
-        <Route exact path="/" render={() => <div>Home</div>} />
-        <Route exact path="/about" render={() => <div>About</div>} />
-      </Switch>
-    </Router>
-  );
+  return <h1>HELOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</h1>;
 };
 
 export default App;

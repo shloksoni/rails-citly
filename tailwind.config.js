@@ -1,52 +1,27 @@
-{
-  "env": {
-    "browser": true,
-    "es6": true,
-    "node": true
+module.exports = {
+  future: {
+    // removeDeprecatedGapUtilities: true,
+    // purgeLayersByDefault: true,
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "prettier"
-  ],
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly",
-    "logger": true
-  },
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+  purge: [],
+  theme: {
+    extend: {
+      colors: {
+        'bb-purple': '#5469D4',
+        'bb-env': '#F1F5F9',
+        'bb-border': '#E4E4E7',
+        'bb-gray-700': '#37415',
+        'bb-gray-600': '#4B5563',
+        'bb-red': '#F56565',
+        'bb-green': '#31C48D',
+        'bb-yellow': '#F6B100',
+        "nitro-gray-800": "#1F2937",
+      },
+      boxShadow: {
+        "custom-box-shadow": "10px 10px 5px 200px rgba(0,0,0,1)",
+      }
     },
-    "ecmaVersion": 2018,
-    "sourceType": "module"
   },
-  "parser": "babel-eslint",
-  "plugins": [
-    "react"
-  ],
-  "rules": {
-    "no-unused-vars": 0,
-    "no-undef": 0,
-    "indent": [
-      "error",
-      2
-    ],
-    "arrow-parens": [
-      "error",
-      "as-needed"
-    ],
-    "semi": [
-      "error",
-      "always"
-    ],
-    "no-console": "error",
-    "react/prop-types": 0,
-    "import/prefer-default-export": "off"
-  }
+  variants: {},
+  plugins: [],
 }
