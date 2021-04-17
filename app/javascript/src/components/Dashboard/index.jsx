@@ -15,6 +15,7 @@ const Dashboard = ({ history }) => {
     try {
       const response = await urlsApi.list();
       setUrls(response.data);
+      setUrl("");
     } catch (error) {
       logger.error(error);
     } finally {
@@ -43,7 +44,8 @@ const Dashboard = ({ history }) => {
 
   const submitUrl = async () => {
     try {
-      await urlsApi.create({ url: { original: url } });
+      await urlsApi.create({ url: { url } });
+
       await fetchUrls();
     } catch (error) {
       logger.error(error);
@@ -59,14 +61,6 @@ const Dashboard = ({ history }) => {
       <div className="w-screen h-screen">
         <PageLoader />
       </div>
-    );
-  }
-
-  if (either(isNil, isEmpty)(urls)) {
-    return (
-      <Container>
-        <h1 className="my-5 text-xl leading-5 text-center">No URLs</h1>
-      </Container>
     );
   }
 
@@ -87,7 +81,16 @@ const Dashboard = ({ history }) => {
           loading={false}
         />
       </div>
-      <Table data={urls} pinUrl={pinUrl} openShortenedLink={openLinkInNewTab} />
+
+      {either(isNil, isEmpty)(urls) ? (
+        <h1 className="my-5 text-xl leading-5 text-center">No URLs</h1>
+      ) : (
+        <Table
+          data={urls}
+          pinUrl={pinUrl}
+          openShortenedLink={openLinkInNewTab}
+        />
+      )}
     </Container>
   );
 };

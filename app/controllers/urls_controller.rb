@@ -1,5 +1,5 @@
 require 'csv'    
-require 'digest'
+
 
 class UrlsController < ApplicationController
 
@@ -15,13 +15,13 @@ class UrlsController < ApplicationController
 
   def create
     
-    hash = generate_hash(url_params[:original])
+    hash = generate_hash(url_params[:url])
     url = Url.new(url_params.merge(shortened: hash))
     if url.save
       render status: :ok, json: {notice: "URL shortened"}
     else
       render status: :unprocessable_entity,
-             json: { errors: @task.errors.full_messages.to_sentence }
+             json: { error: url.errors.full_messages.to_sentence }
     end
   end
 
@@ -30,20 +30,20 @@ class UrlsController < ApplicationController
       render status: :ok, json: {}
     else
       render status: :unprocessable_entity,
-             json: { errors: @task.errors.full_messages.to_sentence }
+             json: { error: @url.errors.full_messages.to_sentence }
     end
   end
   private 
 
     def url_params
       
-      params.require(:url).permit(:original, :status )
+      params.require(:url).permit(:url, :status )
 
     end
     def load_url
       @url = Url.find(params[:id])
       rescue ActiveRecord::RecordNotFound => e
-        render json: { errors: e }, status: :not_found
+        render json: { error: e }, status: :not_found
     end
 
     def generate_hash(string)

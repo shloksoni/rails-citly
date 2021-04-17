@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_16_085826) do
+ActiveRecord::Schema.define(version: 2021_04_17_092124) do
 
   create_table "urls", force: :cascade do |t|
-    t.text "original", null: false
+    t.text "url", null: false
     t.text "shortened", null: false
     t.integer "clicks", default: 0
     t.integer "status", default: 0

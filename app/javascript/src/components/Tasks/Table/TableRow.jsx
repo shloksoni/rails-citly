@@ -23,16 +23,17 @@ const TableRow = ({ data, pinUrl, openShortenedLink }) => {
             ></i>
           </td>
 
-          <td className="px-6 py-4 text-opacity-50 text-sm font-medium leading-5 whitespace-no-wrap text-bb-purple">
-            <a href={rowData.original} rel="noreferrer" target="_blank">
-              {" "}
-              {rowData.original}{" "}
-            </a>
+          <td className="px-6 py-4 overflow-hidden text-opacity-50 text-sm font-medium leading-5 whitespace-no-wrap text-bb-purple">
+            <div className="w-40">
+              <a href={rowData.url} rel="noreferrer" target="_blank">
+                {rowData.url}
+              </a>
+            </div>
           </td>
 
           <td
             className="px-6 py-4 text-sm font-medium leading-5
-                        text-bb-gray-600 whitespace-no-wrap hover:text-bb-purple cursor:pointer"
+                        text-bb-gray-600 whitespace-no-wrap hover:text-bb-purple cursor-pointer"
             onClick={() => openShortenedLink(rowData.shortened)}
           >
             {window.location.href + rowData.shortened}
