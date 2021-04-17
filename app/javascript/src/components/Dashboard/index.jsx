@@ -6,7 +6,8 @@ import PageLoader from "components/PageLoader";
 import Table from "components/Tasks/Table/index";
 import Input from "../Input";
 import Button from "components/Button";
-const Dashboard = ({ history }) => {
+
+const Dashboard = () => {
   const [urls, setUrls] = useState([]);
   const [loading, setLoading] = useState(true);
   const [url, setUrl] = useState("");
@@ -24,9 +25,13 @@ const Dashboard = ({ history }) => {
   };
 
   const openLinkInNewTab = async (relativeUrl = "") => {
-    const url = window.location.href + relativeUrl;
-    window.open(url, "_blank").focus();
-    await fetchUrls();
+    try {
+      const url = window.location.href + relativeUrl;
+      window.open(url, "_blank").focus();
+      await fetchUrls();
+    } catch (error) {
+      logger.error(error);
+    }
   };
 
   const pinUrl = async (id, status) => {
@@ -79,6 +84,7 @@ const Dashboard = ({ history }) => {
           onClick={() => openLinkInNewTab("urls.csv")}
           type="button"
           buttonText="Reports"
+          iconClass="ri-file-download-fill"
           loading={false}
         />
       </div>
