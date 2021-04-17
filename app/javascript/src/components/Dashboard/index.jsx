@@ -74,6 +74,7 @@ const Dashboard = ({ history }) => {
           loading={false}
           onClick={submitUrl}
         />
+
         <Button
           onClick={() => openLinkInNewTab("urls.csv")}
           type="button"
