@@ -1,8 +1,10 @@
 class HomeController < ApplicationController
   before_action :load_url_by_shortened, only: :show
+
   def index 
     render
   end
+
   def show
     if @url.present?
       @url.increment!(:clicks)
@@ -10,7 +12,6 @@ class HomeController < ApplicationController
     else
       render
     end
-    
   end
 
   private

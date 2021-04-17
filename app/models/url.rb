@@ -1,14 +1,13 @@
 class Url < ApplicationRecord
-  
   enum status: { unpinned: 0, pinned: 1 }
 
   validates :url, presence: true,  format: { with: URI.regexp }
   validates :shortened, presence: true
 
   private
+
   def self.to_csv
     attributes = %w{url shortened clicks}
-
     CSV.generate(headers: true) do |csv|
       csv << attributes
       all.each do |url|
