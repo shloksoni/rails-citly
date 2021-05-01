@@ -2,8 +2,8 @@ class Url < ApplicationRecord
   enum status: { unpinned: 0, pinned: 1 }
 
   validates :url, presence: true,  format: { with: URI.regexp }
-  validates :shortened, presence: true
-
+  validates :shortened, presence: true,  length: { is: 6 }
+  
   private
 
   def self.to_csv
