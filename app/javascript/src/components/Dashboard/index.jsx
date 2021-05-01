@@ -28,7 +28,6 @@ const Dashboard = () => {
     try {
       const url = window.location.href + relativeUrl;
       window.open(url, "_blank").focus();
-      await fetchUrls();
     } catch (error) {
       logger.error(error);
     }
@@ -49,8 +48,8 @@ const Dashboard = () => {
 
   const submitUrl = async () => {
     try {
+      setUrl("");
       await urlsApi.create({ url: { url } });
-
       await fetchUrls();
     } catch (error) {
       logger.error(error);

@@ -1,8 +1,8 @@
 require 'csv'    
 
 class UrlsController < ApplicationController
-  before_action :load_url, only: %i[ update]
-
+  before_action :load_url, only: :update
+  before_action :check_url_presence, only: :create 
   def index
     urls = Url.all
     respond_to do |format|
@@ -49,6 +49,16 @@ class UrlsController < ApplicationController
       hash = (Digest::SHA256.hexdigest string)[index,6]
       return hash unless Url.find_by(shortened: hash)
       index += 6 
-    end       
+    end 
+    render status: :unprocessable_entity,
+             json: { error: "Couldn't Shortern the URL"}
+  end
+
+  def check_url_presence
+    url = url_params[:url]
+    if Url.find_by(url: url)
+      render status: :unprocessable_entity,
+             json: { error: "URL already present"}
+    end
   end
 end

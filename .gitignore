@@ -89,4 +89,4 @@ $RECYCLE.BIN/
 .Trashes
 
 # Ignore dump.rb
-dump.rdb
+dump.rdbtest/fixtures
