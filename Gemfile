@@ -61,3 +61,5 @@ gem 'bcrypt'
 
 gem 'rexml', '~> 3.2.5'
 
+
+gem 'bundle-audit'
